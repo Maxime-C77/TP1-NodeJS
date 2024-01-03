@@ -1,0 +1,61 @@
+function lireFichier() {
+    const data = fs.readFileSync('utilisateur.json', 'utf8');
+    return JSON.parse(data);
+}
+
+function afficherUtilisateur() {
+    const utilisateur = lireFichier();
+    console.log('Liste des utilisateurs :');
+    utilisateur.forEach(utilisateur => {
+      console.log(`${utilisateur.nom}, ${utilisateur.prenom}, ${utilisateur.email}`);
+    });
+    rl.close();
+}
+/*function afficherCommentaire() {
+    const commentaire = lireFichier();
+    console.log('Liste des commentaires :');
+    commentaire.forEach(commentaire => {
+      console.log(`${commentaire.date_creation_commentaire}`);
+    });
+    rl.close();
+}*/
+
+function ajouterUtilisateur(nom, prenom, email) {
+    const utilisateur = lireFichier();
+    utilisateur.push({ nom, prenom, email });
+    fs.writeFileSync('utilisateur.json', JSON.stringify(utilisateur, null, 2), 'utf8');
+    console.log('Utilisateur ajoutée avec succès !');
+    rl.close(); 
+}
+
+function main() {
+    console.log('Bienvenue dans le gestionnaire des utilisateurs !');
+    console.log('1. Ajouter un utilisateur');
+    console.log('2. Afficher la liste des utilisateurs');
+    rl.question('Veuillez choisir une option (1 ou 2) : ', (choix) => {
+      choix = parseInt(choix);
+  
+      switch (choix) {
+        case 1:
+          rl.question("Nom de l'utilisateur : ", (nom) => {
+            rl.question("Prénom de l'utilisateur : ", (prenom) => {
+              rl.question("Email de l'utilisateur : ", (email) => {
+                ajouterUtilisateur(nom, prenom, email);
+              });
+            });
+          });
+          break;
+        case 2:
+          afficherUtilisateur();
+          break;
+        default:
+          console.log('Option invalide. Veuillez choisir une option valide.');
+          rl.close();
+      }
+    });
+}
+
+main()
+/*app.get('/commentaire', function(req, res){
+  res.status(200).json(commentaire)
+})*/

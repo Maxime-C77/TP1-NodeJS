@@ -22,21 +22,8 @@
   {
     "nom": "moi",
     "prenom": "aussi",
-    "email": "m.aussi@gmail.com"
-  },
-  {
-    "nom": "aaa",
-    "prenom": "bbb",
-    "email": "a.b@gmail.com"
-  },
-  {
-    "nom": "test",
-    "prenom": "test",
-    "email": "test@gmail.com"
-  },
-  {
-    "nom": "test2",
-    "prenom": "test2",
-    "email": "test2@gmail.com"
+    "email": "m.aussi@gmail.com",
+    "password": "test",
+    "role": "true"
   }
 ]
