@@ -1,9 +1,3 @@
-create table utilisateur('id', 'nom', 'prenom', 'email') 
-(id integer auto_increment, 
-nom varchar(255), 
-prenom varchar(255), 
-email varchar(255) unique);
-
 CREATE Table utilisateur(
     id INTEGER auto_increment,
     nom VARCHAR(255),
