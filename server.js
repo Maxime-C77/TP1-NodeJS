@@ -18,22 +18,22 @@ function lireFichier() {
     return JSON.parse(data);
 }
 
-function afficherListe() {
+function afficherUtilisateur() {
     const utilisateur = lireFichier();
     console.log('Liste des utilisateurs :');
     utilisateur.forEach(utilisateur => {
-      console.log(`${utilisateur.nom} ${utilisateur.prenom}, ${utilisateur.email}`);
+      console.log(`${utilisateur.nom}, ${utilisateur.prenom}, ${utilisateur.email}`);
     });
     rl.close();
 }
-function afficherCommentaire() {
-    const utilisateur = lireFichier();
-    console.log('Liste des utilisateurs :');
-    utilisateur.forEach(utilisateur => {
-      console.log(`${utilisateur.nom} ${utilisateur.prenom}, ${utilisateur.email}`);
+/*function afficherCommentaire() {
+    const commentaire = lireFichier();
+    console.log('Liste des commentaires :');
+    commentaire.forEach(commentaire => {
+      console.log(`${commentaire.date_creation_commentaire}`);
     });
     rl.close();
-}
+}*/
 
 function ajouterUtilisateur(nom, prenom, email) {
     const utilisateur = lireFichier();
@@ -61,7 +61,7 @@ function main() {
           });
           break;
         case 2:
-          afficherListe();
+          afficherUtilisateur();
           break;
         default:
           console.log('Option invalide. Veuillez choisir une option valide.');
@@ -76,6 +76,10 @@ app.get('/utilisateur', function(req, res){
     res.status(200).json(utilisateur)
 })
 
+/*app.get('/commentaire', function(req, res){
+  res.status(200).json(commentaire)
+})*/
+
 app.get('/utilisateur/:nom', function(req, res){
     let nom = req.params.nom
     leUtilisateur = utilisateur.find(utilisateur => utilisateur.nom === nom)
@@ -83,8 +87,9 @@ app.get('/utilisateur/:nom', function(req, res){
 })
  
 app.post('/utilisateur', async (req, res)=>{
-    utilisateur.push(req.body)
-    res.status(200).json(utilisateur)
+    console.log(req.body);
+    await db.query(`insert into utilisateur(nom, prenom, email) VALUES ('${req.body.nom}', '${req.body.prenom}', '${req.body.email})`)
+    res.status(200).json("utilisateur ajouté")
 })
 
 app.put('/utilisateur/:id', (req, res) => {
