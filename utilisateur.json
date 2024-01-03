@@ -1,0 +1,32 @@
+[
+  {
+    "nom": "Einstein",
+    "prenom": "Albert",
+    "email": "e.albert@gmail.com"
+  },
+  {
+    "nom": "Curie",
+    "prenom": "Marie",
+    "email": "c.marie@gmail.com"
+  },
+  {
+    "nom": "Hawking",
+    "prenom": "Stephen",
+    "email": "h.stephen@gmail.com"
+  },
+  {
+    "nom": "Nathan",
+    "prenom": "Laury",
+    "email": "n.laury@gmail.com"
+  },
+  {
+    "nom": "moi",
+    "prenom": "aussi",
+    "email": "m.aussi@gmail.com"
+  },
+  {
+    "nom": "aaa",
+    "prenom": "bbb",
+    "email": "a.b@gmail.com"
+  }
+]
