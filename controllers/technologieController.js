@@ -1,11 +1,14 @@
 const db = require('../database/database')
-const express = require('express')
-const app= express()
-app.use(express.json())
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 
-exports.getAllTechnologie= function(req, res){
-    res.status(200).json(technologie)
+exports.getAllTechnologie= async(req, res) => {
+    const sql = "SELECT * from technologie";
+    const resultat = await db.query(sql);
+    console.log(resultat)
+    res.status(200).json(resultat);
 }
 
 exports.getTechnologie = function(req, res){

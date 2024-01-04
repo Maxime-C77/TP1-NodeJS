@@ -1,11 +1,14 @@
 const db = require('../database/database')
-const express = require('express')
-const app= express()
-app.use(express.json())
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 
-exports.getAllUser= function(req, res){
-    res.status(200).json(utilisateur)
+exports.getAllUser= async(req, res) => {
+    const sql = "SELECT * from utilisateur";
+    const resultat = await db.query(sql);
+    console.log(resultat)
+    res.status(200).json(resultat);
 }
 
 exports.getUser = function(req, res){
@@ -14,7 +17,7 @@ exports.getUser = function(req, res){
     res.status(200).json(leUtilisateur)
 }
  
-exports.AddUser =  async (req, res)=>{
+/*exports.AddUser =  async (req, res)=>{
     console.log(req.body);
     await db.query(`insert into utilisateur(nom, prenom, email) VALUES ('${req.body.nom}', '${req.body.prenom}', '${req.body.email})`)
     res.status(200).json("utilisateur ajouté")
@@ -34,7 +37,7 @@ exports.DeleteUser = (req, res) => {
     let leUtilisateur = utilisateur.find(utilisateur => utilisateur.id === id)
     utilisateur.splice(utilisateur.indexOf(leUtilisateur),1)
     res.status(200).json(utilisateur)
-}
+}*/
 
 exports.Register = async (req, res) => {
     try {

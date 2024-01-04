@@ -8,4 +8,4 @@ const pool = mariadb.createPool({
     password: process.env.DBPASSWORD
 })
 
-module.exports = {pool: pool};
+module.exports = pool
